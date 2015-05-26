@@ -68,7 +68,8 @@ class MergeXmlReportsTask implements TaskInterface
             
             $srcXml = new \DOMDocument();
             if (!file_exists($src)) {
-                throw new TaskException($this, "XML file $src does not exist");
+                $this->printTaskInfo("<error>File $src could not be found</error>");
+                continue;
             }
             $loaded = $srcXml->load($src);
             if (!$loaded) {
